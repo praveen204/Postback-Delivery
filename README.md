@@ -76,12 +76,12 @@ vii) Now if we try to retrieve the values, they will look like this:
 **/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin**    
   
 **echo $GOPATH**         
-**/root/go **    
+**/root/go**    
 
 viii) Install Predis library which helps in connecting Redis with PHP. Install it using the following commands:
 
-**apt-get install -y php-pear **   
-**pear channel-discover pear.nrk.io **  
+**apt-get install -y php-pear**   
+**pear channel-discover pear.nrk.io**  
 **pear install nrk/Predis**    
 
 ix) Install Redigo library into the system so that Go can interact with Redis using this library. Install it using the following command:
