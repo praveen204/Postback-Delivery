@@ -196,7 +196,7 @@ iii) Copy ingest.php and printMethod.php to /var/www/html directory using the fo
 **cp ingest.php  /var/www/html**  
 **cp printMethod.php /var/www/html**  
 
-iv) Keep a note that the endpoint URL is http://<i></i>165.227.0.65/printMethod.php. Now open POSTMAN and submit a POST request of http://<i></i>165.227.0.65/ingest.php with following data in body: <br/>
+iv) Keep a note that the endpoint URL is http://<i></i>165.227.0.65/printMethod.php. Now open [POSTMAN](https://www.getpostman.com/) and submit a POST request of http://<i></i>165.227.0.65/ingest.php with following data in body: <br/>
 <h4> {  <br />      
      "endpoint":{ <br />  
       "method":"GET",<br />  
@@ -214,7 +214,7 @@ v) Before submitting, make sure to run the **delivery_agent.go**  in the server 
 
 **go run delivery_agent.go**
 
-vi) Now click submit in [POSTMAN](https://www.getpostman.com/) for the request. A response of “Pushing to Redis Successful!” appears in [POSTMAN](https://www.getpostman.com/).
+vi) Now click submit in locally installed [POSTMAN](https://www.getpostman.com/) for the request. A response of “Pushing to Redis Successful!” appears in [POSTMAN](https://www.getpostman.com/).
 
 vii) Each of the post back objects generated using the request’s data  will be pushed to redis list and response will be generated. The running **delivery_agent.go** shows the logs of result in the console  of the server(165.227.0.65) for our reference.
 
