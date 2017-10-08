@@ -196,11 +196,11 @@ iii) Copy ingest.php and printMethod.php to /var/www/html directory using the fo
 **cp ingest.php  /var/www/html**  
 **cp printMethod.php /var/www/html**  
 
-iv)  Now open POSTMAN and submit a POST request of http://<ip address of server>/ingest.php with following data in body:
+iv)  Now open POSTMAN and submit a POST request of http:// 165.227.0.65/ingest.php with following data in body:
  **{  
       "endpoint":{  
         "method":"GET",
-        "url":"http://localhost/printMethod.php/data?title={mascot}&image={location}&foo={bar}"
+        "url":"http:// localhost/printMethod.php/data?title={mascot}&image={location}&foo={bar}"
       },
       "data":[  
         {  
@@ -218,8 +218,8 @@ vi) Now click submit in POSTMAN for the request. A response of “Pushing to Red
 
 vii) Each of the post back objects generated using the request’s data  will be pushed to redis list and response will be generated. The running **delivery_agent.go** shows the logs of result in the console for our reference.
 
-INFO: 2017/10/08 05:32:50.600462 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:88: **Delivering URL: < http://localhost/printMethod.php/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo=  >  method: GET **  
-INFO: 2017/10/08 05:32:50.602125 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:55: **Received response from: < http://localhost/printMethod.php/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo= > **  
+INFO: 2017/10/08 05:32:50.600462 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:88: **Delivering URL: < http:// localhost/printMethod.php/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo=  >  method: GET **  
+INFO: 2017/10/08 05:32:50.602125 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:55: **Received response from: < http:// localhost/printMethod.php/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo= > **  
 INFO: 2017/10/08 05:32:50.602150 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:56: **Response Code: 200**  
 INFO: 2017/10/08 05:32:50.602252 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:58: **Response Body: {"bar":"","location":"https://blog.golang.org/gopher/gopher.png","mascot":"Gopher"} **  
 
@@ -227,12 +227,12 @@ INFO: 2017/10/08 05:32:50.602252 /root/go/src/github.com/praveen204/Postback-del
 
 Sample request:
 
-**(POST) http://<ip address of server>/ingest.php
+**(POST) http:// 165.227.0.65/ingest.php
     (RAW POST DATA) 
     {  
       "endpoint":{  
         "method":"GET",
-        "url":"http://sample_domain_endpoint.com/data?title={mascot}&image={location}&foo={bar}"
+        "url":"http:// sample_domain_endpoint.com/data?title={mascot}&image={location}&foo={bar}"
       },
       "data":[  
         {  
@@ -245,7 +245,7 @@ Sample request:
 **
 Sample response:
 **
- GET http://sample_domain_endpoint.com/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo=
+ GET http:// sample_domain_endpoint.com/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo=
 **
 
 
