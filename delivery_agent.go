@@ -51,7 +51,7 @@ func initializeLogs(traceHandle io.Writer, infoHandle io.Writer, warningHandle i
 }
 
 /* The below function handles response received from sending a postback object and logs it into  info file*/
-func logEndpointResponseInfo(response *http.Response, postback Pbo) {
+func logEndpointResponse(response *http.Response, postback Pbo) {
 	v_info.Println("Received response from : < " + postback.Url+" >" )
 	v_info.Println("Response Code:", response.StatusCode)
 	body, _ := ioutil.ReadAll(response.Body)
@@ -91,7 +91,7 @@ func deliverForGetType(postback Pbo) {
 		v_warning.Println("Could not send GET request to: " + postback.Url + ">")
 	} else {
 		defer response.Body.Close()
-		logEndpointResponseInfo(response, postback)
+		logEndpointResponse(response, postback)
 	}
 }
 
@@ -110,7 +110,7 @@ func deliverForPostType(postback Pbo) {
 		v_warning.Println("Could not send POST request to: <" + postback.Url + ">")
 	} else {
 		defer response.Body.Close()
-		logEndpointResponseInfo(response, postback)
+		logEndpointResponse(response, postback)
 	}
 }
 /*The below function performs the processing of postback object received from Redis server*/
