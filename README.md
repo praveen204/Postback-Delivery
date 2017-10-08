@@ -39,7 +39,7 @@ iv) Make sure that gcc and make packages are installed by using the following co
 
 i) Install Redis using the following commands:
 
-**wget ht<span>tp://download.redis.io/releases/redis-4.0.2.tar.gz**  
+**wget http://<i></i>download.redis.io/releases/redis-4.0.2.tar.gz**  
 **tar zxvf redis-4.0.2.tar.gz**  
 **cd redis-4.0.2/**  
 **make**  
@@ -210,13 +210,13 @@ iv) Keep a note that the endpoint URL is http://<i></i>165.227.0.65/printMethod.
       ] <br />
     }<br /></h4>
 
-v) Before submitting, make sure to run the **delivery_agent.go** to see response details using the following command:
+v) Before submitting, make sure to run the **delivery_agent.go**  in the server to see response details using the following command:
 
 **go run delivery_agent.go**
 
 vi) Now click submit in POSTMAN for the request. A response of “Pushing to Redis Successful!” appears in POSTMAN.
 
-vii) Each of the post back objects generated using the request’s data  will be pushed to redis list and response will be generated. The running **delivery_agent.go** shows the logs of result in the console for our reference.
+vii) Each of the post back objects generated using the request’s data  will be pushed to redis list and response will be generated. The running **delivery_agent.go** shows the logs of result in the console  of the server(165.227.0.65) for our reference.
 
 INFO: 2017/10/08 05:32:50.600462 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:88: <B>Delivering URL: < http://<i></i>localhost/printMethod.php/data?title=Gopher&image=https://<i></i>blog.golang.org/gopher/gopher.png&foo=  >  method: GET </B>  
 INFO: 2017/10/08 05:32:50.602125 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:55: <B>Received response from: < http://<i></i>localhost/printMethod.php/data?title=Gopher&image=https://<i></i>blog.golang.org/gopher/gopher.png&foo= > </B>
