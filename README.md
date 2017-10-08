@@ -200,7 +200,7 @@ iv)  Now open POSTMAN and submit a POST request of http://<i></i>165.227.0.65/in
 <h4> {  <br />      
      "endpoint":{ <br />  
       "method":"GET",<br />  
-      "url":"http://<i></i>localhost/printMethod.php/data?title={mascot}&image={location}&foo={bar}" <br /> 
+      "url":"http://<i></i>165.227.0.65/printMethod.php/data?title={mascot}&image={location}&foo={bar}" <br /> 
       },<br />  
      "data":[<br /> 
         {<br />  
@@ -232,7 +232,7 @@ Sample request: </h4>
     {  <br />
       "endpoint":{  <br /> 
         "method":"GET",<br />
-        "url":"http://<i></i>sample_domain_endpoint.com/data?title={mascot}&image={location}&foo={bar}" <br />
+        "url":"http://<i></i>165.227.0.65/printMethod.php/data?title={mascot}&image={location}&foo={bar}" <br />
       },<br />
       "data":[<br />  
         {  <br />
