@@ -60,7 +60,7 @@ iv) Install PHP 7 using the following command:
 **apt-get install -y php7.0-gd libapache2-mod-php7.0 php7.0-mcrypt**
 
 v) Install Go using the following commands:
-**wget https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz**  
+**wget https://<i></i>storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz**  
 **tar -C /usr/local -xzf go1.9.1.linux-amd64.tar.gz**  
 
 vi) Set the environment variables of PATH,GOPATH by appending the following lines in **$HOME/.bashrc** file at the bottom:
@@ -200,12 +200,12 @@ iv)  Now open POSTMAN and submit a POST request of http://<i></i>165.227.0.65/in
 <h4> {  <br />      
      "endpoint":{ <br />  
       "method":"GET",<br />  
-      "url":"http://localhost/printMethod.php/data?title={mascot}&image={location}&foo={bar}" <br /> 
+      "url":"http://<i></i>localhost/printMethod.php/data?title={mascot}&image={location}&foo={bar}" <br /> 
       },<br />  
      "data":[<br /> 
         {<br />  
            "mascot":"Gopher",** <br /> 
-          "location":"https://blog.golang.org/gopher/gopher.png" <br />  
+          "location":"https://<i></i>blog.golang.org/gopher/gopher.png" <br />  
         }  <br />
       ] <br />
     }<br /></h4>
@@ -218,26 +218,26 @@ vi) Now click submit in POSTMAN for the request. A response of “Pushing to Red
 
 vii) Each of the post back objects generated using the request’s data  will be pushed to redis list and response will be generated. The running **delivery_agent.go** shows the logs of result in the console for our reference.
 
-INFO: 2017/10/08 05:32:50.600462 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:88: <B>Delivering URL: < http://localhost/printMethod.php/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo=  >  method: GET </B>  
-INFO: 2017/10/08 05:32:50.602125 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:55: <B>Received response from: < http://localhost/printMethod.php/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo= > </B>
+INFO: 2017/10/08 05:32:50.600462 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:88: <B>Delivering URL: < http://<i></i>localhost/printMethod.php/data?title=Gopher&image=https://<i></i>blog.golang.org/gopher/gopher.png&foo=  >  method: GET </B>  
+INFO: 2017/10/08 05:32:50.602125 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:55: <B>Received response from: < http://<i></i>localhost/printMethod.php/data?title=Gopher&image=https://<i></i>blog.golang.org/gopher/gopher.png&foo= > </B>
 INFO: 2017/10/08 05:32:50.602150 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:56: <B>Response Code: 200</B>  
-INFO: 2017/10/08 05:32:50.602252 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:58: <B>Response Body: {"bar":"","location":"https://blog.golang.org/gopher/gopher.png","mascot":"Gopher"} </B>  
+INFO: 2017/10/08 05:32:50.602252 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:58: <B>Response Body: {"bar":"","location":"https://<i></i>blog.golang.org/gopher/gopher.png","mascot":"Gopher"} </B>  
 
 ## Sample Run:
 <h4>
 Sample request: </h4>
 <br/>
-(POST) http://165.227.0.65/ingest.php<br />
+(POST) http://<i></i>165.227.0.65/ingest.php<br />
     (RAW POST DATA) <br />
     {  <br />
       "endpoint":{  <br /> 
         "method":"GET",<br />
-        "url":"http://sample_domain_endpoint.com/data?title={mascot}&image={location}&foo={bar}" <br />
+        "url":"http://<i></i>sample_domain_endpoint.com/data?title={mascot}&image={location}&foo={bar}" <br />
       },<br />
       "data":[<br />  
         {  <br />
           "mascot":"Gopher",<br />
-          "location":"https://blog.golang.org/gopher/gopher.png"<br />
+          "location":"https://<i></i>blog.golang.org/gopher/gopher.png"<br />
         }<br />
       ]<br />
     }<br />
@@ -245,7 +245,7 @@ Sample request: </h4>
 
 <h4>Sample response:</h4>
 <br />
- GET http://sample_domain_endpoint.com/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo=
+ GET http://<i></i>sample_domain_endpoint.com/data?title=Gopher&image=https://<i></i>blog.golang.org/gopher/gopher.png&foo=
 <br />
 
 
