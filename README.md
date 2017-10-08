@@ -248,5 +248,8 @@ Sample request: </h4>
  GET http://<i></i>165.227.0.65/printMethod.php/data?title=Gopher&image=https://<i></i>blog.golang.org/gopher/gopher.png&foo=
 <br />
 
-
+<h4>Sample response body:</h4>
+<br />
+{"bar":"","location":"https://blog.golang.org/gopher/gopher.png","mascot":"Gopher"}
+<br />
 
