@@ -196,7 +196,7 @@ iii) Copy ingest.php and printMethod.php to /var/www/html directory using the fo
 **cp ingest.php  /var/www/html**  
 **cp printMethod.php /var/www/html**  
 
-iv)  Now open POSTMAN and submit a POST request of URL [//]: # (http://165.227.0.65/ingest.php) with following data in body:
+iv)  Now open POSTMAN and submit a POST request of http://<ip address of server>/ingest.php with following data in body:
  **{  
       "endpoint":{  
         "method":"GET",
@@ -227,7 +227,7 @@ INFO: 2017/10/08 05:32:50.602252 /root/go/src/github.com/praveen204/Postback-del
 
 Sample request:
 
-**(POST) http://165.227.0.65/ingest.php
+**(POST) http://<ip address of server>/ingest.php
     (RAW POST DATA) 
     {  
       "endpoint":{  
