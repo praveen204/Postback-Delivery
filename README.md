@@ -197,7 +197,7 @@ iii) Copy ingest.php and printMethod.php to /var/www/html directory using the fo
 **cp printMethod.php /var/www/html**  
 
 iv)  Now open POSTMAN and submit a POST request of http://165.227.0.65/ingest.php with following data in body: <br/>
- <h2>{  <br />      
+ <h4>{  <br />      
      "endpoint":{ <br />  
       "method":"GET",<br />  
       "url":"http://localhost/printMethod.php/data?title={mascot}&image={location}&foo={bar}" <br /> 
@@ -208,7 +208,7 @@ iv)  Now open POSTMAN and submit a POST request of http://165.227.0.65/ingest.ph
           "location":"https://blog.golang.org/gopher/gopher.png" <br />  
         }  <br />
       ] <br />
-    }<br /></h2>
+    }<br /></h4>
 
 v) Before submitting, make sure to run the **delivery_agent.go** to see response details using the following command:
 
