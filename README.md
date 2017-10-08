@@ -28,45 +28,45 @@ In this project, the delivery agent is the concurrent golang service that keeps 
 ##  Prerequisites:
 i) A linux system preferably Ubuntu 16.04 as this tutorial is based on it.
 
-ii) Ensure network settings are properly configured in it and it is pingable from outside world by making needed changes in  the file of /etc/network/interfaces
+ii) Ensure network settings are properly configured in it and it is pingable from outside world by making needed changes in  the file of **/etc/network/interfaces**
 
-iii) Ensure that root user of the system is SSHable from outside world by changing configuration to “PermitRootLogin yes”  in /etc/ssh/sshd_config file
+iii) Ensure that root user of the system is SSHable from outside world by changing configuration to **“PermitRootLogin yes”**  in **/etc/ssh/sshd_config** file
 
 iv) Make sure that gcc and make packages are installed by using the following command: 
-apt-get install -y make gcc
+**apt-get install -y make gcc**
 
 ##  Installation Steps:
 
 i) Install Redis using the following commands:
 
-wget http://download.redis.io/releases/redis-4.0.2.tar.gz
-tar zxvf redis-4.0.2.tar.gz
-cd redis-4.0.2/
-make
+**wget http://download.redis.io/releases/redis-4.0.2.tar.gz**
+**tar zxvf redis-4.0.2.tar.gz**
+**cd redis-4.0.2/**
+**make**
 
 Also install redis-tools  in order to be able access redis command line interface. Use the following command to install reds-tools:
-apt-get install -y redis-tools
+**apt-get install -y redis-tools**
 
 ii) Install git package using the following command:
 
-apt-get install -y git
+**apt-get install -y git**
 
 iii) Install Apache Server using the following command:
 
-apt-get install -y apache2-bin
+**apt-get install -y apache2-bin**
 
 iv) Install PHP 7 using the following command:
 
-apt-get install -y php7.0-gd libapache2-mod-php7.0 php7.0-mcrypt
+**apt-get install -y php7.0-gd libapache2-mod-php7.0 php7.0-mcrypt**
 
 v) Install Go using the following commands:
-wget https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.9.1.linux-amd64.tar.gz
+**wget https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz**
+**tar -C /usr/local -xzf go1.9.1.linux-amd64.tar.gz**
 
 vi) Set the environment variables of PATH,GOPATH by appending the following lines in $HOME/.bashrc file at the bottom:
 
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$(go env GOPATH)
+**export PATH=$PATH:/usr/local/go/bin**
+**export GOPATH=$(go env GOPATH)**
 
 Then run the command “bash” to update environment variables immediately
 
