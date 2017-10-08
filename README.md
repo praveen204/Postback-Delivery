@@ -39,7 +39,7 @@ iv) Make sure that gcc and make packages are installed by using the following co
 
 i) Install Redis using the following commands:
 
-**wget httphttp:#58;//download.redis.io/releases/redis-4.0.2.tar.gz**  
+**wget http://download.redis.io/releases/redis-4.0.2.tar.gz**  
 **tar zxvf redis-4.0.2.tar.gz**  
 **cd redis-4.0.2/**  
 **make**  
