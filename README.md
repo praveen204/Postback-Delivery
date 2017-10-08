@@ -122,7 +122,7 @@ v) Copy the template configuration file you'll find in the root directory of the
 
 vi) Create a directory inside /var/redis that will work as data and working directory for this Redis instance:
 
-**sudo mkdir /var/redis/7000**  
+**sudo mkdir /var/redis/7000 **  
 
 vii) Edit the configuration file  /etc/redis/7000.conf as follows:
 
