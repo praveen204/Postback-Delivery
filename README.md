@@ -60,7 +60,7 @@ iv) Install PHP 7 using the following command:
 **apt-get install -y php7.0-gd libapache2-mod-php7.0 php7.0-mcrypt**
 
 v) Install Go using the following commands:
-**wget https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz**  
+**wget https\://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz**  
 **tar -C /usr/local -xzf go1.9.1.linux-amd64.tar.gz**  
 
 vi) Set the environment variables of PATH,GOPATH by appending the following lines in **$HOME/.bashrc** file at the bottom:
