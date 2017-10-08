@@ -250,6 +250,6 @@ Sample request: </h4>
 
 <h4>Sample response body:</h4>
 <br />
-{"bar":"","location":"https://blog.golang.org/gopher/gopher.png","mascot":"Gopher"}
+{"bar":"","location":"https://<i></i>blog.golang.org/gopher/gopher.png","mascot":"Gopher"}
 <br />
 
