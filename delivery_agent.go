@@ -1,3 +1,4 @@
+/*This program acts as a delivery agent to continuously pull postback objects on port 7000 in the server*/
 package main
 
 import (
@@ -13,20 +14,21 @@ import (
 	"log"
 	"io/ioutil"
 )
-//Used to store the JSON Postback object input from Redis
-
+//Pbo type helps in defining the structure to store the postback objects
+// Pbo - Postback object
 type Pbo struct {
 	Method string              `json:"method"`
 	Url    string              `json:"url"`
 	Data   map[string]string   `json:"data"`
 }
+// The below constants store configuration related information
 const (
 	LOG_FILE = "delivery_agent.log"
 	REDIS_LIST = "request"
 	MISMATCH_KEY_VALUE_URL = ""	
 	DISPLAY_TRACES = false
 )
-
+// Variables declaration
 var (
 	argumentPattern = regexp.MustCompile("{.*?}")
 	
@@ -37,6 +39,7 @@ var (
 )
 
 
+/*The below function helps in initializing various logs */
 
 func initializeLogs(traceHandle io.Writer, infoHandle io.Writer, warningHandle io.Writer, errorHandle io.Writer) {
 	V_warning = log.New(warningHandle, "WARNING: ", log.Ldate|log.Lmicroseconds|log.Llongfile)
@@ -46,7 +49,17 @@ func initializeLogs(traceHandle io.Writer, infoHandle io.Writer, warningHandle i
 
 }
 
-func matchUrlKeysToValues(postback *Pbo) {
+/* The below function handles response received from sending a postback object and logs it into  info file*/
+func logEndpointResponseInfo(response *http.Response, postback Pbo) {
+	V_info.Println("Received response from: <" + postback.Url + ">")
+	V_info.Println("Response Code:", response.StatusCode)
+	body, _ := ioutil.ReadAll(response.Body)
+	V_info.Println("Response Body:", string(body))
+}
+
+
+/*The below function finds all keys in the Postback object and replaces them with and replace them with values present in Postback object's data*/
+func mappingUrlKeystoValues(postback *Pbo) {
 	matchingIndexes := argumentPattern.FindStringIndex(postback.Url)
 	for matchingIndexes != nil {
 		patternMatch := argumentPattern.FindString(postback.Url)
@@ -61,12 +74,8 @@ func matchUrlKeysToValues(postback *Pbo) {
 	}
 }
 
-func logEndpointResponseInfo(response *http.Response, postback Pbo) {
-	V_info.Println("Received response from: <" + postback.Url + ">")
-	V_info.Println("Response Code:", response.StatusCode)
-	body, _ := ioutil.ReadAll(response.Body)
-	V_info.Println("Response Body:", string(body))
-}
+
+/*The below function delivers postback object using GET method*/
 
 func deliverForGetType(postback Pbo) {
 	requestBody, _ := json.Marshal(postback.Data)
@@ -85,6 +94,8 @@ func deliverForGetType(postback Pbo) {
 	}
 }
 
+
+/*The below function delivers postback object using POST  method*/
 func deliverForPostType(postback Pbo) {
 	requestBody, _ := json.Marshal(postback.Data)
 	V_trace.Println("requestBody: " + string(requestBody))
@@ -101,7 +112,7 @@ func deliverForPostType(postback Pbo) {
 		logEndpointResponseInfo(response, postback)
 	}
 }
-
+/*The below function performs the processing of postback object received from Redis server*/
 func processPbo(redisServer redis.Conn) {
 	endpoint, err := redis.String(redisServer.Do("LPOP", REDIS_LIST))
 	if err == nil && endpoint != "" {
@@ -109,7 +120,7 @@ func processPbo(redisServer redis.Conn) {
 		json.Unmarshal([]byte(endpoint), &postback)
 		V_trace.Println("endpoint: " + endpoint)
 		V_trace.Println("postback: " + fmt.Sprint(postback))
-		matchUrlKeysToValues(&postback)
+		mappingUrlKeystoValues(&postback)
 		V_trace.Println("postback.Url: " + postback.Url)
 		if strings.ToUpper(postback.Method) == "GET" {
 			deliverForGetType(postback)
@@ -128,6 +139,7 @@ func processPbo(redisServer redis.Conn) {
 }
 
 
+/*The below function is the main function from where the actual execution starts*/
 func main() {
 	logger, logError := os.OpenFile(LOG_FILE, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if logError != nil {
@@ -135,16 +147,16 @@ func main() {
 	}
 	defer logger.Close()
 
-	var traceOutput io.Writer
+	var stdout_trace io.Writer
 	if DISPLAY_TRACES {
-		traceOutput = os.Stdout
+		stdout_trace = os.Stdout
 	} else {
-		traceOutput = ioutil.Discard
+		stdout_trace = ioutil.Discard
 	}
 	stdout_warn := io.MultiWriter(logger, os.Stdout)
 	stdout_info := io.MultiWriter(logger, os.Stdout)	
 	stdout_error := io.MultiWriter(logger, os.Stderr)
-	initializeLogs(traceOutput, stdout_info, stdout_warn, stdout_error)
+	initializeLogs(stdout_trace, stdout_info, stdout_warn, stdout_error)
 	
 	redisServer, err := redis.Dial("tcp", ":7000")
 	if err != nil {
