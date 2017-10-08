@@ -72,11 +72,11 @@ Then run the command “bash” to update environment variables immediately
 
 vii) Now if we try to retrieve the values, they will look like this:
 
-**echo $PATH
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin  
+**echo $PATH**  
+**/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin**    
   
-echo $GOPATH      
-/root/go **  
+**echo $GOPATH**         
+**/root/go **    
 
 viii) Install Predis library which helps in connecting Redis with PHP. Install it using the following commands:
 
