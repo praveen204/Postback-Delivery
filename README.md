@@ -3,11 +3,11 @@
 ##  Introduction:
 Postback delivery is a service that takes HTTP POST requests and delivers HTTP requests mentioned in the body.
 
-*It composes of three components namely:
+It composes of three components namely:  
 
- 	* i) Ingestion Agent
- 	* ii) Delivery Queue
-	*iii) Delivery Agent
+ 	 i) Ingestion Agent  
+ 	 ii) Delivery Queue  
+	iii) Delivery Agent  
 
 ##  Ingestion Agent:
 It is the agent which accepts incoming requests and  pushes a "postback" object to Delivery Queue for each "data" object contained in accepted request.
