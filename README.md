@@ -196,7 +196,7 @@ iii) Copy ingest.php and printMethod.php to /var/www/html directory using the fo
 **cp ingest.php  /var/www/html**  
 **cp printMethod.php /var/www/html**  
 
-iv)  Now open POSTMAN and submit a POST request of URL **http<span></span>://165.227.0.65/ingest.php** with following data in body:
+iv)  Now open POSTMAN and submit a POST request of URL **\http://165.227.0.65/ingest.php** with following data in body:
  **{  
       "endpoint":{  
         "method":"GET",
