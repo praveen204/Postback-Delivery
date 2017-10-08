@@ -225,7 +225,7 @@ INFO: 2017/10/08 05:32:50.602252 /root/go/src/github.com/praveen204/Postback-del
 
 ## Sample Run:
 <h4>
-Sample request:
+Sample request: </h4>
 <br/>
 (POST) http://165.227.0.65/ingest.php<br />
     (RAW POST DATA) <br />
@@ -243,10 +243,10 @@ Sample request:
     }<br />
 
 
-Sample response:
+<h4>Sample response:</h4>
 <br />
  GET http://sample_domain_endpoint.com/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo=
-<br /></h4>
+<br />
 
 
 
