@@ -44,7 +44,7 @@ i) Install Redis using the following commands:
 **cd redis-4.0.2/**  
 **make**  
 
-Also install redis-tools  in order to be able access redis command line interface. Use the following command to install reds-tools:
+Also install redis-tools  in order to be able access redis command line interface. Use the following command to install redis-tools:<br />
 **apt-get install -y redis-tools**
 
 ii) Install git package using the following command:
@@ -59,7 +59,7 @@ iv) Install PHP 7 using the following command:
 
 **apt-get install -y php7.0-gd libapache2-mod-php7.0 php7.0-mcrypt**
 
-v) Install Go using the following commands:
+v) Install Go using the following commands:<br/>
 **wget https://<i></i>storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz**  
 **tar -C /usr/local -xzf go1.9.1.linux-amd64.tar.gz**  
 
@@ -192,7 +192,7 @@ i) First we need to clone the git repository to local system if not already clon
 
 ii) We can access the cloned repository in **$HOME/go/src/github.com/praveen204** directory
 
-iii) Copy ingest.php and printMethod.php to /var/www/html directory using the following commands:
+iii) Copy ingest.php and printMethod.php to /var/www/html directory using the following commands:<br />
 **cp ingest.php  /var/www/html**  
 **cp printMethod.php /var/www/html**  
 
@@ -204,7 +204,7 @@ iv) Keep a note that the endpoint URL is http://<i></i>165.227.0.65/printMethod.
       },<br />  
      "data":[<br /> 
         {<br />  
-           "mascot":"Gopher",** <br /> 
+           "mascot":"Gopher", <br /> 
           "location":"https://<i></i>blog.golang.org/gopher/gopher.png" <br />  
         }  <br />
       ] <br />
@@ -214,7 +214,7 @@ v) Before submitting, make sure to run the **delivery_agent.go**  in the server 
 
 **go run delivery_agent.go**
 
-vi) Now click submit in POSTMAN for the request. A response of “Pushing to Redis Successful!” appears in POSTMAN.
+vi) Now click submit in [POSTMAN](https://www.getpostman.com/) for the request. A response of “Pushing to Redis Successful!” appears in [POSTMAN](https://www.getpostman.com/).
 
 vii) Each of the post back objects generated using the request’s data  will be pushed to redis list and response will be generated. The running **delivery_agent.go** shows the logs of result in the console  of the server(165.227.0.65) for our reference.
 
@@ -245,7 +245,7 @@ Sample request: </h4>
 
 <h4>Sample response:</h4>
 <br />
- GET http://<i></i>sample_domain_endpoint.com/data?title=Gopher&image=https://<i></i>blog.golang.org/gopher/gopher.png&foo=
+ GET http://<i></i>165.227.0.65/printMethod.php/data?title=Gopher&image=https://<i></i>blog.golang.org/gopher/gopher.png&foo=
 <br />
 
 
