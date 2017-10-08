@@ -52,7 +52,7 @@ func initializeLogs(traceHandle io.Writer, infoHandle io.Writer, warningHandle i
 
 /* The below function handles response received from sending a postback object and logs it into  info file*/
 func logEndpointResponseInfo(response *http.Response, postback Pbo) {
-	v_info.Println("Received response from: <" + postback.Url + ">")
+	v_info.Println("Received response from : < " + postback.Url+" >" )
 	v_info.Println("Response Code:", response.StatusCode)
 	body, _ := ioutil.ReadAll(response.Body)
 	v_info.Println("Response Body:", string(body))
@@ -85,10 +85,10 @@ func deliverForGetType(postback Pbo) {
 	request.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
 	v_trace.Println("request: " + fmt.Sprint(request))
-	v_info.Println("Delivering. url: <" + postback.Url + "> method: " + postback.Method)
+	v_info.Println("Delivering URL: < " + postback.Url + " >   method: " + postback.Method)
 	response, err := client.Do(request)
 	if err != nil {
-		v_warning.Println("Could not send GET request to: <" + postback.Url + ">")
+		v_warning.Println("Could not send GET request to: " + postback.Url + ">")
 	} else {
 		defer response.Body.Close()
 		logEndpointResponseInfo(response, postback)
@@ -104,7 +104,7 @@ func deliverForPostType(postback Pbo) {
 	request.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
 	v_trace.Println("request: " + fmt.Sprint(request))
-	v_info.Println("Delivering. url: <" + postback.Url + "> method: " + postback.Method)
+	v_info.Println("Delivering URL: < " + postback.Url + " >  method: " + postback.Method)
 	response, err := client.Do(request)
 	if err != nil {
 		v_warning.Println("Could not send POST request to: <" + postback.Url + ">")
