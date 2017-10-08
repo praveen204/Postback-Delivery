@@ -1,4 +1,5 @@
 /*This program acts as a delivery agent to continuously pull postback objects on port 7000 in the server*/
+
 package main
 
 import (
@@ -32,29 +33,29 @@ const (
 var (
 	argumentPattern = regexp.MustCompile("{.*?}")
 	
-	V_trace   *log.Logger
-	V_info    *log.Logger
-	V_warning *log.Logger
-	V_error   *log.Logger
+	v_trace   *log.Logger
+	v_info    *log.Logger
+	v_warning *log.Logger
+	v_error   *log.Logger
 )
 
 
 /*The below function helps in initializing various logs */
 
 func initializeLogs(traceHandle io.Writer, infoHandle io.Writer, warningHandle io.Writer, errorHandle io.Writer) {
-	V_warning = log.New(warningHandle, "WARNING: ", log.Ldate|log.Lmicroseconds|log.Llongfile)
-	V_error =   log.New(errorHandle,   "ERROR: ",   log.Ldate|log.Lmicroseconds|log.Llongfile)
-	V_trace =   log.New(traceHandle,   "TRACE: ",   log.Ldate|log.Lmicroseconds|log.Llongfile)
-	V_info =    log.New(infoHandle,    "INFO: ",    log.Ldate|log.Lmicroseconds|log.Llongfile)
+	v_warning = log.New(warningHandle, "WARNING: ", log.Ldate|log.Lmicroseconds|log.Llongfile)
+	v_error =   log.New(errorHandle,   "ERROR: ",   log.Ldate|log.Lmicroseconds|log.Llongfile)
+	v_trace =   log.New(traceHandle,   "TRACE: ",   log.Ldate|log.Lmicroseconds|log.Llongfile)
+	v_info =    log.New(infoHandle,    "INFO: ",    log.Ldate|log.Lmicroseconds|log.Llongfile)
 
 }
 
 /* The below function handles response received from sending a postback object and logs it into  info file*/
 func logEndpointResponseInfo(response *http.Response, postback Pbo) {
-	V_info.Println("Received response from: <" + postback.Url + ">")
-	V_info.Println("Response Code:", response.StatusCode)
+	v_info.Println("Received response from: <" + postback.Url + ">")
+	v_info.Println("Response Code:", response.StatusCode)
 	body, _ := ioutil.ReadAll(response.Body)
-	V_info.Println("Response Body:", string(body))
+	v_info.Println("Response Body:", string(body))
 }
 
 
@@ -79,15 +80,15 @@ func mappingUrlKeystoValues(postback *Pbo) {
 
 func deliverForGetType(postback Pbo) {
 	requestBody, _ := json.Marshal(postback.Data)
-	V_trace.Println("Request Body: " + string(requestBody))
+	v_trace.Println("Request Body: " + string(requestBody))
 	request, err :=  http.NewRequest("GET", postback.Url, bytes.NewBuffer(requestBody))
 	request.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
-	V_trace.Println("request: " + fmt.Sprint(request))
-	V_info.Println("Delivering. url: <" + postback.Url + "> method: " + postback.Method)
+	v_trace.Println("request: " + fmt.Sprint(request))
+	v_info.Println("Delivering. url: <" + postback.Url + "> method: " + postback.Method)
 	response, err := client.Do(request)
 	if err != nil {
-		V_warning.Println("Could not send GET request to: <" + postback.Url + ">")
+		v_warning.Println("Could not send GET request to: <" + postback.Url + ">")
 	} else {
 		defer response.Body.Close()
 		logEndpointResponseInfo(response, postback)
@@ -98,15 +99,15 @@ func deliverForGetType(postback Pbo) {
 /*The below function delivers postback object using POST  method*/
 func deliverForPostType(postback Pbo) {
 	requestBody, _ := json.Marshal(postback.Data)
-	V_trace.Println("requestBody: " + string(requestBody))
+	v_trace.Println("requestBody: " + string(requestBody))
 	request, err :=  http.NewRequest("POST", postback.Url, bytes.NewBuffer(requestBody))
 	request.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
-	V_trace.Println("request: " + fmt.Sprint(request))
-	V_info.Println("Delivering. url: <" + postback.Url + "> method: " + postback.Method)
+	v_trace.Println("request: " + fmt.Sprint(request))
+	v_info.Println("Delivering. url: <" + postback.Url + "> method: " + postback.Method)
 	response, err := client.Do(request)
 	if err != nil {
-		V_warning.Println("Could not send POST request to: <" + postback.Url + ">")
+		v_warning.Println("Could not send POST request to: <" + postback.Url + ">")
 	} else {
 		defer response.Body.Close()
 		logEndpointResponseInfo(response, postback)
@@ -118,23 +119,23 @@ func processPbo(redisServer redis.Conn) {
 	if err == nil && endpoint != "" {
 		postback := Pbo{}
 		json.Unmarshal([]byte(endpoint), &postback)
-		V_trace.Println("endpoint: " + endpoint)
-		V_trace.Println("postback: " + fmt.Sprint(postback))
+		v_trace.Println("endpoint: " + endpoint)
+		v_trace.Println("postback: " + fmt.Sprint(postback))
 		mappingUrlKeystoValues(&postback)
-		V_trace.Println("postback.Url: " + postback.Url)
+		v_trace.Println("postback.Url: " + postback.Url)
 		if strings.ToUpper(postback.Method) == "GET" {
 			deliverForGetType(postback)
 		} else if strings.ToUpper(postback.Method) == "POST" {
 			deliverForPostType(postback)
 		} else {
-			V_error.Println("Unsupported Postback Method.")
+			v_error.Println("Unsupported Postback Method.")
 		}
 	} else if fmt.Sprint(err) == "redigo: nil returned" {
 		//There is no data yet to deliver.
 	} else if err != nil {
-		V_warning.Println("Redis Problem: " + fmt.Sprint(err))
+		v_warning.Println("Redis Problem: " + fmt.Sprint(err))
 	} else {
-		V_warning.Println("Received empty Redis Object.")
+		v_warning.Println("Received empty Redis Object.")
 	}
 }
 
@@ -160,10 +161,10 @@ func main() {
 	
 	redisServer, err := redis.Dial("tcp", ":7000")
 	if err != nil {
-		V_error.Fatalln(err)
+		v_error.Fatalln(err)
 	}
 	  if _, err := redisServer.Do("AUTH","test"); err != nil {
-		V_error.Fatalln(err)
+		v_error.Fatalln(err)
         }	
 	defer redisServer.Close()
 	for {
