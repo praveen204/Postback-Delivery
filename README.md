@@ -197,7 +197,7 @@ iii) Copy ingest.php and printMethod.php to /var/www/html directory using the fo
 **cp printMethod.php /var/www/html**  
 
 iv)  Now open POSTMAN and submit a POST request of http://165.227.0.65/ingest.php with following data in body: <br/>
- {  <br />      
+<h4> {  <br />      
      "endpoint":{ <br />  
       "method":"GET",<br />  
       "url":"http://localhost/printMethod.php/data?title={mascot}&image={location}&foo={bar}" <br /> 
@@ -208,7 +208,7 @@ iv)  Now open POSTMAN and submit a POST request of http://165.227.0.65/ingest.ph
           "location":"https://blog.golang.org/gopher/gopher.png" <br />  
         }  <br />
       ] <br />
-    }<br />
+    }<br /></h4>
 
 v) Before submitting, make sure to run the **delivery_agent.go** to see response details using the following command:
 
@@ -224,29 +224,29 @@ INFO: 2017/10/08 05:32:50.602150 /root/go/src/github.com/praveen204/Postback-del
 INFO: 2017/10/08 05:32:50.602252 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:58: <B>Response Body: {"bar":"","location":"https://blog.golang.org/gopher/gopher.png","mascot":"Gopher"} </B>  
 
 ## Sample Run:
-
+<h4>
 Sample request:
+<br/>
+(POST) http://165.227.0.65/ingest.php<br />
+    (RAW POST DATA) <br />
+    {  <br />
+      "endpoint":{  <br /> 
+        "method":"GET",<br />
+        "url":"http://sample_domain_endpoint.com/data?title={mascot}&image={location}&foo={bar}" <br />
+      },<br />
+      "data":[<br />  
+        {  <br />
+          "mascot":"Gopher",<br />
+          "location":"https://blog.golang.org/gopher/gopher.png"<br />
+        }<br />
+      ]<br />
+    }<br />
 
-**(POST) http://165.227.0.65/ingest.php
-    (RAW POST DATA) 
-    {  
-      "endpoint":{  
-        "method":"GET",
-        "url":"http://sample_domain_endpoint.com/data?title={mascot}&image={location}&foo={bar}"
-      },
-      "data":[  
-        {  
-          "mascot":"Gopher",
-          "location":"https://blog.golang.org/gopher/gopher.png"
-        }
-      ]
-    }
 
-**
 Sample response:
-**
+<br />
  GET http://sample_domain_endpoint.com/data?title=Gopher&image=https://blog.golang.org/gopher/gopher.png&foo=
-**
+<br /></h4>
 
 
 
