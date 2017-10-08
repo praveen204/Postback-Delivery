@@ -139,16 +139,16 @@ Change the following in the opened file:
 
 viii) Add the following comments containing init info in the configuration file of redis_7000 just below the #!/bin/sh line:
 
-### BEGIN INIT INFO
-# Provides: redis_7000
-# Required-Start: $remote_fs $syslog
-# Required-Stop: $remote_fs $syslog
-# Default-Start: 2 3 4 5
-# Default-Stop: 0 1 6
-# Short-Description: redis_7000
-# Description: This file is the  service file for redis configuration
-#
-### END INIT INFO
+\### BEGIN INIT INFO
+\# Provides: redis_7000
+\# Required-Start: $remote_fs $syslog
+\# Required-Stop: $remote_fs $syslog
+\# Default-Start: 2 3 4 5
+\# Default-Stop: 0 1 6
+\# Short-Description: redis_7000
+\# Description: This file is the  service file for redis configuration
+\#
+\### END INIT INFO
 
 ix) Finally add the new Redis init script to all the default runlevels using the following command:
 sudo update-rc.d redis_7000 defaults
