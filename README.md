@@ -1,6 +1,6 @@
 #  Postback-Delivery
 
-Introduction:
+##  Introduction:
 Postback delivery is a service that takes HTTP POST requests and delivers HTTP requests mentioned in the body.
 
 It composes of three components namely:
@@ -9,33 +9,33 @@ It composes of three components namely:
  ii) Delivery Queue
 iii) Delivery Agent
 
-Ingestion Agent:
+##  Ingestion Agent:
 It is the agent which accepts incoming requests and  pushes a "postback" object to Delivery Queue for each "data" object contained in accepted request.
 
 In this project, the PHP HTTP web server which is built on Apache2 acts as an Ingestion Agent.
 
-Delivery Queue:
+## Delivery Queue:
 
 The delivery queue is the entity responsible for accepting the postback objects from ingestion agent as well as sending them to delivery agent.
 
 In this project, Redis database is used to maintain this delivery queue.
 
-Delivery Agent:
+##  Delivery Agent:
 The delivery agent is responsible for continuously pulling postback objects from Redis and delivering each of them to the http endpoint.
 
 In this project, the delivery agent is the concurrent golang service that keeps running until someone forcibly stops it.
 
-Prerequisites:
+##  Prerequisites:
 i) A linux system preferably Ubuntu 16.04 as this tutorial is based on it.
 
 ii) Ensure network settings are properly configured in it and it is pingable from outside world by making needed changes in  the file of /etc/network/interfaces
 
-Iii) Ensure that root user of the system is SSHable from outside world by changing configuration to “PermitRootLogin yes”  in /etc/ssh/sshd_config file
+iii) Ensure that root user of the system is SSHable from outside world by changing configuration to “PermitRootLogin yes”  in /etc/ssh/sshd_config file
 
 iv) Make sure that gcc and make packages are installed by using the following command: 
 apt-get install -y make gcc
 
-Installation Steps:
+##  Installation Steps:
 
 i) Install Redis using the following commands:
 
@@ -91,7 +91,7 @@ go get github.com/garyburd/redigo/redis
 This will create a directory of github.com in $HOME/go/src directory which internally contains redigo directory.
 
 
-Changing Default port of Redis(6379 to 7000):
+##  Changing Default port of Redis(6379 to 7000):
 
 i) Firstly, copy the redis-server and redis-cli to the /usr/local/bin directory so that they will be available in the environment variable “PATH”
 
@@ -137,8 +137,7 @@ Change the following in the opened file:
 - Set the dir to /var/redis/7000
 
 
-viii) 
-Add the following comments containing init info in the configuration file of redis_7000 just below the #!/bin/sh line:
+viii) Add the following comments containing init info in the configuration file of redis_7000 just below the #!/bin/sh line:
 
 ### BEGIN INIT INFO
 # Provides: redis_7000
@@ -161,7 +160,7 @@ x)  Then restart init service as follows:
 
 A reboot is recommended if any issue arises in this step
 
-Adding authentication to Redis:
+##  Adding authentication to Redis:
 
 A password can be added to the redis database by uncommenting the “requirepass” property in the configuration file.
 
@@ -180,12 +179,12 @@ For example, client can connect through redid-cli with password as follows:
 redis-cli -p 7000 -a test
 
 
-Configuration details:
+##  Configuration details:
 - REDIS_LIST property in delivery_agent.go and redis_list variable of ingestion_agent.go are related to each other and should be of same value
 - The default log file name is delivery_agent.log but can be changed by setting the property of LOG_FILE to a different value in delivery_agent.go
 - Setting the property of SHOW_TRACES to true if we want to display the trace level logs in output.
 
-Stepwise procedure to run:
+##  Stepwise procedure to run:
 i) First we need to clone the git repository to local system if not already cloned using the following command:
 
 go get github.com/praveen204/Postback-delivery
@@ -223,7 +222,7 @@ INFO: 2017/10/08 05:32:50.602125 /root/go/src/github.com/praveen204/Postback-del
 INFO: 2017/10/08 05:32:50.602150 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:56: Response Code: 200
 INFO: 2017/10/08 05:32:50.602252 /root/go/src/github.com/praveen204/Postback-delivery/delivery_agent.go:58: Response Body: {"bar":"","location":"https://blog.golang.org/gopher/gopher.png","mascot":"Gopher"}
 
-Sample Run:
+## Sample Run:
 
 Sample request:
 
